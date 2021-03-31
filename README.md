@@ -1,27 +1,21 @@
-# AmsuiPublicApiDemo
+# Amsui Public API Demo Project
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.6.
+It uses the AMSUI library.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## [Demo](https://dev.redlink.io/amsui-public-api-demo/)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## [Documentation AMSUI](https://dev.redlink.io/amsui)
 
-## Build
+## [npm library](https://www.npmjs.com/package/@redlink/amsui)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## [AMSUI library on github](https://github.com/redlink-gmbh/amsui)
 
-## Running unit tests
+## Other demos
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- [Demo with Standalone components](https://dev.redlink.io/amsui-standalone-demo/)
+- [Demo with Solr Index](https://dev.redlink.io/amsui-solr-demo/)

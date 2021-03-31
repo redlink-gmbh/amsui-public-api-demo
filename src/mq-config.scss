@@ -1,0 +1,7 @@
+@import "~@redlink/amsui/styles/breakpoints.scss";
+$mq-breakpoints: (
+  mobile: $mobile,
+  tablet: $tablet,
+  desktop: $desktop,
+);
+@import "mq";

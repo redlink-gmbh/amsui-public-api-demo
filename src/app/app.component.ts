@@ -8,8 +8,8 @@ import {
 import { Observable, of, Subject } from 'rxjs';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CdkOverlayOrigin } from '@angular/cdk/overlay';
-import { ActivatedRoute } from '@angular/router';
-import { take, takeUntil } from 'rxjs/operators';
+import { ActivatedRoute, Params } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import {
   Breakpoints,
@@ -77,23 +77,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     private readonly activatedRoute: ActivatedRoute,
     private readonly translateService: TranslateService
   ) {
-    this.activatedRoute.queryParams
-      .pipe(take(2), takeUntil(this.notifierDestroySubs))
-      .subscribe((params) => {
-        if (
-          !(
-            params &&
-            Object.keys(params).length === 0 &&
-            params.constructor === Object
-          )
-        ) {
-          this.searchKeyword = params.q || '';
-          if (this.searchKeyword !== '') {
-            this.searchService.selectedFacets = paramsToSelectedFacets(params);
-            this.publicApiService.search(this.searchKeyword);
-          }
-        }
-      });
     this.translateService.setDefaultLang('de');
     this.translateService.use('en');
   }
@@ -108,6 +91,18 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       .subscribe((result) => {
         this.isMobile = result.breakpoints[Breakpoints.Mobile];
         this.isTablet = result.breakpoints[Breakpoints.Tablet];
+      });
+    this.activatedRoute.queryParams
+      .pipe(takeUntil(this.notifierDestroySubs))
+      .subscribe((params) => {
+        console.log(params);
+        if (paramsNotEmpty(params)) {
+          this.searchKeyword = params.q || '';
+          if (this.searchKeyword !== '') {
+            this.searchService.selectedFacets = paramsToSelectedFacets(params);
+            this.publicApiService.search(this.searchKeyword);
+          }
+        }
       });
   }
 
@@ -173,4 +168,12 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       window.open(resultEntryActionEvent.entry.id, '_blank');
     }
   }
+}
+
+function paramsNotEmpty(params: Params): boolean {
+  return !(
+    params &&
+    Object.keys(params).length === 0 &&
+    params.constructor === Object
+  );
 }

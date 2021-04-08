@@ -8,13 +8,14 @@ import {
 import { Observable, of, Subject } from 'rxjs';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CdkOverlayOrigin } from '@angular/cdk/overlay';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import {
   Breakpoints,
   Facet,
   NoResultsConfig,
+  paramsNotEmpty,
   paramsToSelectedFacets,
   resetToQueryParam,
   ResultEntry,
@@ -51,7 +52,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       { value: 'title', viewValue: 'Titel', fieldOfResults: 'title' },
     ],
     resultViewTypes: ['list', 'grid'],
-    selectedResultViewType: 'list',
+    selectedResultViewType: 'grid',
   };
   noResultsConfig: NoResultsConfig = {
     alternativeKeywords: ['Sports', 'Jobs', 'News', 'Books'],
@@ -63,7 +64,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   };
   searchFieldConfig: SearchFieldConfig = {
     value: this.didYouMeanSearchValue,
-    placeholderLabel: 'app.searchField.placeholder',
     asyncSuggestionDataProvider: this.handleInputEvent.bind(this),
   };
   isMobile = false;
@@ -95,7 +95,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     this.activatedRoute.queryParams
       .pipe(takeUntil(this.notifierDestroySubs))
       .subscribe((params) => {
-        console.log(params);
         if (paramsNotEmpty(params)) {
           this.searchKeyword = params.q || '';
           if (this.searchKeyword !== '') {
@@ -153,10 +152,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     this.publicApiService.search(didYouMeanValue);
   }
 
-  /*handleLoadMore(): void {
-    this.publicApiService.loadMore(this.searchKeyword);
-  }*/
-
   private resetFacets(): void {
     this.searchService.selectedFacets = [];
   }
@@ -168,12 +163,4 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       window.open(resultEntryActionEvent.entry.id, '_blank');
     }
   }
-}
-
-function paramsNotEmpty(params: Params): boolean {
-  return !(
-    params &&
-    Object.keys(params).length === 0 &&
-    params.constructor === Object
-  );
 }

@@ -18,4 +18,3 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ## Other demos
 
 - [Demo with Standalone components](https://dev.redlink.io/amsui-standalone-demo/)
-- [Demo with Solr Index](https://dev.redlink.io/amsui-solr-demo/)

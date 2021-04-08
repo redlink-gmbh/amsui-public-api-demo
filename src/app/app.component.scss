@@ -6,6 +6,9 @@
   height: 100%;
   flex-direction: column;
   justify-content: stretch;
+  h1 {
+    text-align: center;
+  }
   .search-field-container {
     padding: 1em 1em 0;
     border-bottom: 1px solid lightgrey;

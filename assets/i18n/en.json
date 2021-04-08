@@ -1,3 +1,4 @@
 {
-  "app.searchField.placeholder": "Search for public APIs"
+  "searchField.placeholderLabel": "Search for public accessible APIs",
+  "searchResultsWrapper.placeholder": "Please enter a search term to access public and freely accessible APIs from api.publicapis.org!"
 }

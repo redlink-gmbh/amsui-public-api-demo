@@ -1,3 +1,4 @@
 {
-  "app.searchField.placeholder": "Dursuche frei benutzbare APIs"
+  "searchField.placeholderLabel": "Suchen nach frei zugänglichen APIs",
+  "searchResultsWrapper.placeholder": "Bitte geben Sie ein Suchwort ein, um öffentliche und frei zugängliche APIs von https://api.publicapis.org/ zu finden!"
 }
